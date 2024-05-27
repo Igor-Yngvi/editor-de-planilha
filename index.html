@@ -33,7 +33,7 @@
 
         @media screen and (max-width: 768px) {
             main {
-                width: 80%;
+                width: 90%;
             }
         }
 
@@ -79,7 +79,6 @@
         .table-container {
             width: 100%;
             padding: 20px;
-            overflow-x: scroll;
         }
 
         table {
@@ -180,7 +179,7 @@ function adicionarColuna() {
             novaCelula.innerHTML = "Estoque Real"; // Define o texto da primeira célula da nova coluna
         } else {
             // Você pode adicionar qualquer conteúdo desejado para as outras células da nova coluna aqui
-            novaCelula.innerHTML = ""; // Por exemplo, aqui estamos apenas adicionando "";
+            novaCelula.innerHTML = "Conteúdo"; // Por exemplo, aqui estamos apenas adicionando "";
         }
     }
 }
@@ -266,6 +265,27 @@ function showTable() {
     button.addEventListener("click", function() {
         hideTable();
     });
+
+
+downloadButton.addEventListener("click", function() {
+ // Obtém o conteúdo HTML do DOM
+    var htmlContent = document.documentElement.outerHTML;
+
+    // Cria um objeto Blob com o conteúdo HTML
+    var blob = new Blob([htmlContent], { type: 'text/html' });
+
+    // Cria um link temporário para download
+    var link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'pagina.html';
+
+    // Adiciona o link ao corpo do documento e simula o clique para iniciar o download
+    document.body.appendChild(link);
+    link.click();
+
+    // Remove o link temporário
+    document.body.removeChild(link);
+});
 </script>
 
 </body>
